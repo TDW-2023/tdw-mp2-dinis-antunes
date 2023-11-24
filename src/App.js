@@ -1,9 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Homepage from "./pages/Homepage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
     <div className="App">
-      <h1>boas mp2</h1>
+     <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage/>}></Route>
+        <Route path="/earch-page" element={<SearchPage/>}></Route>
+        
+      </Routes>
+</BrowserRouter>
     </div>
   );
 }
