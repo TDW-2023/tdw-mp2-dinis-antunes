@@ -9,7 +9,7 @@ function App() {
      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage/>}></Route>
-        <Route path="/earch-page" element={<SearchPage/>}></Route>
+        <Route path="/search-page" element={<SearchPage/>}></Route>
         
       </Routes>
 </BrowserRouter>
