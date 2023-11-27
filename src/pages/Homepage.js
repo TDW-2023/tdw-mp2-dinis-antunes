@@ -1,12 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
+ import ContentHomepage from '../components/ContentHomepage';
+ import styled from 'styled-components';
+
+ const StyledHomepage = styled.div`
+  max-height: 100vh;
+  overflow: hidden;
+`;
 
 const Homepage = () => {
   return (
-    <div>Homepage
-
-     <Link to={"/search-page"}><button>Search your next book</button></Link> 
-    </div>
+    <StyledHomepage>
+<Navbar/>
+<ContentHomepage/>
+   
+    </StyledHomepage>
   )
 }
 
