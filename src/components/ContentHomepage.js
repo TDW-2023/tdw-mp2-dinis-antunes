@@ -3,84 +3,144 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import ImgHomepage from "../assets/img_hp_option_1.png"
 
-const ContentContainer = styled.div`
+const HeroHomepageContainer = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  height: 100vh;
+  justify-content: center;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+
+  @media only screen and (max-width: 992px) {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3em;
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+
+  @media only screen and (max-width: 450px) {
+    padding-top: 1.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
 `;
 
-const TextContent = styled.div`
-  flex: 1;
-  max-width: 40%;
+const TextContainer = styled.div`
+  text-align: left;
+  margin-right: 20px;
+  margin-left: 80px;
+  position: relative;
+
+  @media only screen and (max-width: 992px) {
+    margin-right: 0;
+    margin-bottom: 50px;
+    padding: 1em;
+    margin-left: 0 !important;
+  }
+
+  @media (max-width: 700px) {
+    .hero-title {
+      font-size: 8vw !important;
+    }
+  }
+`;
+
+const HeroTitle = styled.h1`
+  font-size: 5vw;
+  font-weight: 600;
+  background-color: #d64d4d;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  line-height: 0.08;
+  padding-right: 0.4em;
+  padding-bottom: 0.6em;
+
+  @media (max-width: 700px) {
+    font-size: 8vw !important;
+  }
+`;
+
+const ParagrHomepage = styled.p`
+  max-width: 98% !important;
+
+  @media (max-width: 700px) {
+    max-width: 80%;
+    margin-bottom: 2em;
+  }
+`;
+
+const ButtonHomepage = styled.button`
+  margin-top: 2em;
+  background: #c35252;
+  border: 1px solid #c35252;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
   text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+
+  &:hover,
+  &:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #c35252;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 `;
 
-const Title = styled.h1`
-  font-size: 2em;
-  margin-bottom: 16px;
-`;
+const ImageHeroHomepage = styled.div`
+  text-align: center;
 
-const Paragraph = styled.p`
-  font-size: 1em;
-`;
-
-const ImageContainer = styled.div`
-flex: 1;
-max-width: 60%;
-height: 100%;
-margin-left: 20px;
-text-align: left;
-`;
-
-const Image = styled.img`
-width: 100%;
-height: 100%;
-max-width: 100%;
-max-height: 100%;
-object-fit: cover;
+  img {
+    max-width: 95%;
+    height: auto;
+  }
 `;
 
 const ContentHomepage = () => {
   return (
-    // <ContentContainer>
-    //     <TextContent>
-    //     <div className="title-with-marker">
-    
-
-    // <Title id="contactos" className="big_title">Discover</Title>
-    // </div>
-    // <Paragraph>
-    //       Dive into a vast collection of books, ranging from timeless classics to the latest releases.
-    //       Now you can search, select, and add new books to your personal reading list.
-    //       Organize, discover, and immerse yourself in new literary adventures.
-    //     </Paragraph>
-    //     <Link to="/search-page">
-    //       <button>Search your next book</button>
-    //     </Link>
-
-    //     </TextContent>
-
-    //     <ImageContainer>
-    //     <Image src={ImgHomepage} alt="Image Homepage" />
-    //   </ImageContainer>
-
-    // </ContentContainer>
-    <div className="motivation" style={{backgroundColor:'#ECECEC', color:'#2e2e2e'}}>
-    <div className="text">
-
-        <h1>Discover</h1>
-        <p className='paragr_moti'>
-        Dive into a vast collection of books, ranging from timeless classics to the latest releases.<br></br>
-        Now you can search, select, and add new books to your personal reading list.<br></br>
-        Organize, discover, and immerse yourself in new literary adventures.
-        </p>
-    </div>
-    <div className='imageMotivation'>
-        <img className='img_motiva' src={ImgHomepage} alt="imagem hero homepage" />
-    </div>
-</div>
+    <HeroHomepageContainer>
+      <TextContainer>
+        <HeroTitle>Discover.</HeroTitle>
+        <ParagrHomepage>
+          Dive into a vast collection of books, ranging from timeless classics
+          to the latest releases.
+          <br />
+          Now you can search, select, and add new books to your personal
+          reading list.
+          <br />
+          Organize, discover, and immerse yourself in new literary adventures.
+        </ParagrHomepage>
+        <Link to="/search-page">
+          <ButtonHomepage>Search your next book</ButtonHomepage>
+        </Link>
+      </TextContainer>
+      <ImageHeroHomepage>
+        <img src={ImgHomepage} alt="imagem hero homepage" />
+      </ImageHeroHomepage>
+    </HeroHomepageContainer>
   )
 }
 
