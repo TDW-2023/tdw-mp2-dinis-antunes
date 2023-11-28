@@ -6,7 +6,7 @@ body {
   min-height: 100vh;
   /*font-family: "Lexend", sans-serif;*/
   font-family: "Poppins", sans-serif;
-
+  background-color:#ECECEC;
   background-repeat: repeat-y;
 }
 
@@ -28,7 +28,7 @@ height: 63px;
   /* background-image: url("./assets/textura-blanca\ 2.png"); */
   height: 70px;
   display: flex;
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
   justify-content: space-between;
   align-items: center;
   padding-right: 2em;
@@ -100,6 +100,10 @@ a {
 
 @media (max-width: 700px) {
   
+  .hero-title{
+      font-size: 8vw !important;
+  }
+
   .Navbar {
     position: static;
     justify-content: space-between;
@@ -107,16 +111,16 @@ a {
 
   .Navbar > .nav-items {
     color: #2e2e2e !important;
-    overflow: hidden !important;
+    /* overflow: hidden !important; */
     position: absolute;
     top: 70px;
     display: flex;
-    background-color: #fff;
+    background-color: rgb(236, 236, 236);
     flex-direction: column;
     left: 0;
     width: 100%;
     /*text-align: right; para --> menu direita*/
-    height: calc(100vh - 90px);
+    height: calc(100vh - 70px);
     transform: translateX(-100%);
     transition: all 0.45s;
     z-index: 5;
@@ -190,21 +194,75 @@ a {
 
 /* //////////// hero homepage //////////// */
 
-.motivation {
+.hero-title {
+  font-size: 5vw;
+  font-weight: 600;
+  background-color: #d64d4d;
+  display: inline-block;
+  /* padding: 0.2em 0.5em; */
+  position: relative;
+  z-index: 1;
+  line-height: 0.08;
+  padding-right: 0.4em;
+  padding-bottom: 0.6em;
+}
+
+
+.button-homepage {
+  margin-top: 2em;
+  background: #C35252;
+  border: 1px solid #C35252;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-homepage:hover,
+.button-homepage:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #C35252;
+}
+
+.button-homepage:active {
+  opacity: .5;
+}
+
+
+.hero_homepage {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  position: relative;
 }
 
-.imageMotivation {
+.imageHeroHomepage {
   text-align: center;
 }
 
-.imageMotivation img {
-  max-width: 100%;
+.imageHeroHomepage img {
+  max-width: 95%;
   height: auto;
 }
 
@@ -212,10 +270,11 @@ a {
   text-align: left;
   margin-right: 20px;
   margin-left: 80px;
+  position: relative;
 }
 
 @media only screen and (max-width: 992px) {
-  .motivation {
+  .hero_homepage {
     flex-direction: column;
     align-items: center;
     padding-top: 3em;
@@ -223,14 +282,14 @@ a {
   padding-right: 3em;  
 }
 
-.paragr_moti{
+.paragr_homepage{
   max-width: 98% !important;
 }
 
 
 .text {
   margin-right: 0;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   padding: 1em;
   margin-left: 0px !important;
 }
@@ -238,14 +297,14 @@ a {
 
 }
 
-.paragr_moti{
+.paragr_homepage{
   max-width: 80%;
   margin-bottom: 2em;
 }
 
 
 @media only screen and (max-width: 450px) {
-  .motivation {
+  .hero_homepage {
     padding-top: 1.5em;
     padding-left: 1.5em;
   padding-right: 1.5em;  

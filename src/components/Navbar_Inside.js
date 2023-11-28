@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./components.css";
 
-const Navbar = ()=> {
+const NavbarInside = ()=> {
+
     const [isOpen, setIsOpen] = useState(false);
     return(
         <div className="Navbar">
@@ -10,14 +11,17 @@ const Navbar = ()=> {
             <strong><Link to={"/"}>ReadQuest</Link></strong>
             </span>
             <div className={`nav-items ${isOpen && "open"}`}>
-                 <Link to={"/about"}>About</Link>
+                 <Link to={""}>To Read</Link>
+                 <Link to={""}>Have Read</Link>
+                <Link to={"/search-page"}>Search</Link>
                  <div className="space_search_bar">
         </div>
             </div>
             <div className={`nav-toggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)}>
                 <div className="bar"></div>
             </div>
-        </div>)
+        </div>
+    )
 }
 
-export default Navbar
+export default NavbarInside
