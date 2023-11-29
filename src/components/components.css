@@ -34,7 +34,7 @@ height: 63px;
   padding-right: 2em;
   padding-left: 36px;
   position: relative;
-  background-color: #C35252;
+  background-color: #d64d4d;
 }
 
 
@@ -210,8 +210,8 @@ a {
 
 .button-homepage {
   margin-top: 2em;
-  background: #C35252;
-  border: 1px solid #C35252;
+  background: #d64d4d;
+  border: 1px solid #d64d4d;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
   box-sizing: border-box;
@@ -238,7 +238,7 @@ a {
 .button-homepage:active {
   background-color: initial;
   background-position: 0 0;
-  color: #C35252;
+  color: #d64d4d;
 }
 
 .button-homepage:active {

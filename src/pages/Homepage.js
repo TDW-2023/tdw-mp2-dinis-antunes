@@ -1,21 +1,22 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import ContentHomepage from '../components/ContentHomepage';
- import styled from 'styled-components';
+import ContentHomepage from '../components/Homepage/ContentHomepage';
 
- const StyledHomepage = styled.div`
-  min-height: 100vh;
-  overflow: hidden;
-`;
+// import styled from 'styled-components';
+
+//  const StyledHomepage = styled.div`
+//   min-height: 100vh;
+//   overflow: hidden;
+// `;
 
 const Homepage = () => {
   return (
-    <StyledHomepage>
+    <div>
       
 <Navbar/>
 <ContentHomepage/>
    
-    </StyledHomepage>
+    </div>
   )
 }
 
