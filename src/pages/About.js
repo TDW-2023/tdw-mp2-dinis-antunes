@@ -1,15 +1,13 @@
 import React from 'react'
 import NavbarInside from '../components/Navbar_Inside'
+import ContentAbout from '../components/About/ContentAbout'
 
 const About = () => {
   return (
     <div>
         <NavbarInside/>
 
-        <h1>About</h1>
-
-      <p> -Pelo menos uma página de informação estática (e.g., uma página a falar sobre o 
-        projeto)</p> 
+<ContentAbout/>
         
         </div>
   )

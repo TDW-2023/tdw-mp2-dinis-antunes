@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components';
-import ImgHomepage from "../assets/img_hp_option_1.png"
+import ImgHomepage from "../../assets/img_hp_option_1.png"
 
 const HeroHomepageContainer = styled.div`
   display: flex;
@@ -65,50 +64,18 @@ const HeroTitle = styled.h1`
 `;
 
 const ParagrHomepage = styled.p`
-  max-width: 98% !important;
+  max-width: 60%;
+
+  @media (max-width: 992px) {
+    max-width: 90%;
+  }
 
   @media (max-width: 700px) {
-    max-width: 80%;
+    max-width: 95%;
     margin-bottom: 2em;
   }
 `;
 
-const ButtonHomepage = styled.button`
-  margin-top: 2em;
-  background: #c35252;
-  border: 1px solid #c35252;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  padding: 12px 14px;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-
-  &:hover,
-  &:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #c35252;
-  }
-
-  &:active {
-    opacity: 0.5;
-  }
-`;
 
 const ImageHeroHomepage = styled.div`
   text-align: center;
@@ -119,12 +86,29 @@ const ImageHeroHomepage = styled.div`
   }
 `;
 
-const ContentHomepage = () => {
+
+const ContentAbout = () => {
   return (
-    <HeroHomepageContainer>
+    <div>
+<HeroHomepageContainer>
       <TextContainer>
-        <HeroTitle>Discover.</HeroTitle>
+        <HeroTitle>ReadQuest.</HeroTitle>
         <ParagrHomepage>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a pellentesque elit, at ultricies purus. Phasellus porta mi tortor, eu fringilla turpis malesuada sed. Mauris quis magna non neque cursus interdum. Donec eu nisl tincidunt, rutrum nisl eget, vehicula justo. 
+          <br />
+          Now you can search, select, and add new books to your personal
+          reading list.
+          <br />
+          Organize, discover, and immerse yourself in new literary adventures.
+          <br></br>
+          Dive into a vast collection of books, ranging from timeless classics
+          to the latest releases.
+          <br />
+          Now you can search, select, and add new books to your personal
+          reading list.
+          <br />
+          Organize, discover, and immerse yourself in new literary adventures.
+          <br></br>
           Dive into a vast collection of books, ranging from timeless classics
           to the latest releases.
           <br />
@@ -133,15 +117,13 @@ const ContentHomepage = () => {
           <br />
           Organize, discover, and immerse yourself in new literary adventures.
         </ParagrHomepage>
-        <Link to="/search-page">
-          <ButtonHomepage>Search your next book</ButtonHomepage>
-        </Link>
       </TextContainer>
       <ImageHeroHomepage>
         <img src={ImgHomepage} alt="imagem hero homepage" />
       </ImageHeroHomepage>
     </HeroHomepageContainer>
+    </div>
   )
 }
 
-export default ContentHomepage
+export default ContentAbout
