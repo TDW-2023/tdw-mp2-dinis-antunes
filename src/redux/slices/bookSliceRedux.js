@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// relativo a guardar o livro selecionado
+
 const bookSlice = createSlice({
   name: 'book',
   initialState: {
