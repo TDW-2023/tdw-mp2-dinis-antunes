@@ -12,7 +12,8 @@ const HeroHomepageContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   position: relative;
-
+  min-height: calc(90vh - 70px);
+  
   @media only screen and (max-width: 992px) {
     flex-direction: column;
     align-items: center;

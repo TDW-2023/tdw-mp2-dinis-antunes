@@ -1,18 +1,19 @@
 import React from 'react'
 import styled from 'styled-components';
-import ImgHomepage from "../../assets/img_hp_option_1.png"
+// import ImgHomepage from "../../assets/img_hp_option_1.png"
 
-const HeroHomepageContainer = styled.div`
+const HeroAboutContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding-top: 20px;
   padding-left: 20px;
-  padding-right: 20px;
   position: relative;
+  min-height: calc(90vh - 70px);
 
   @media only screen and (max-width: 992px) {
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     padding-top: 3em;
@@ -79,18 +80,29 @@ const ParagrHomepage = styled.p`
 
 const ImageHeroHomepage = styled.div`
   text-align: center;
-
+  position: relative;
+  
   img {
     max-width: 95%;
     height: auto;
   }
 `;
 
+const AboutText = styled.div`
+  color: #d64d4d;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 10vw;
+  z-index: 2; 
+
+`;
 
 const ContentAbout = () => {
   return (
     <div>
-<HeroHomepageContainer>
+<HeroAboutContainer>
       <TextContainer>
         <HeroTitle>ReadQuest.</HeroTitle>
         <ParagrHomepage>
@@ -119,9 +131,12 @@ const ContentAbout = () => {
         </ParagrHomepage>
       </TextContainer>
       <ImageHeroHomepage>
-        <img src={ImgHomepage} alt="imagem hero homepage" />
+        {/* <img src={ImgHomepage} alt="imagem hero homepage" /> */}
       </ImageHeroHomepage>
-    </HeroHomepageContainer>
+      <AboutText>
+          <p>About</p>
+        </AboutText>
+    </HeroAboutContainer>
     </div>
   )
 }
