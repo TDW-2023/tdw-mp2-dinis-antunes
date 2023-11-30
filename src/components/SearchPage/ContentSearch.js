@@ -2,7 +2,11 @@ import React, { useState } from "react";
 // import { Link } from 'react-router-dom'
 import styled from "styled-components";
 import DefaultImg from "../../assets/no_img_available.svg"
-import ImgNoResult from "../../assets/no search.svg"
+// import ImgNoResult from "../../assets/no search.svg"
+import { useDispatch } from 'react-redux';
+import { selectBook } from '../../redux/slices/bookSliceRedux';
+import { Link } from "react-router-dom";
+
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,7 +29,7 @@ const SearchBarContainer = styled.div`
 const SearchBar = styled.input`
   padding: 10px;
   font-size: 16px;
-  border: 1px solid red;
+  border: 2.5px solid #d64d4d;
   width: 100%;
   max-width: 400px;
   outline: none;
@@ -160,29 +164,31 @@ margin-bottom: 2em;
 
 `;
 
-const NoResultsForSearchContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 100vh;
-`;
+// const NoResultsForSearchContainer = styled.div`
+// display: flex;
+// flex-direction: column;
+// align-items: center;
+// justify-content: center;
+// height: 100vh;
+// `;
 
-const ImageForNoResults = styled.img`
-  max-width: 200px;
-  height: auto;
-`;
+// const ImageForNoResults = styled.img`
+//   max-width: 200px;
+//   height: auto;
+// `;
 
-const MessageForNoResults = styled.h3`
-margin-top: 2em;
-margin-bottom: 2em;
+// const MessageForNoResults = styled.h3`
+// margin-top: 2em;
+// margin-bottom: 2em;
 
-@media (max-width: 400px) {
-  font-size: 1.3em;
-}
-`;
+// @media (max-width: 400px) {
+//   font-size: 1.3em;
+// }
+// `;
 
 const ContentSearch = () => {
+
+  const dispatch = useDispatch();
 
   const [searchBook, setSearchBook] = useState(""); // guardar o que foi pesquisado
   const [searchResults, setSearchResults] = useState([]); // guardar os resultados da pesquisa
@@ -244,6 +250,10 @@ const ContentSearch = () => {
     setPage(newPage);
   };
 
+  const handleClickBookForDetail = (book) => {
+    dispatch(selectBook(book));
+  };
+
   return (
     <SearchContainer>
     <SearchBarContainer>
@@ -264,7 +274,8 @@ const ContentSearch = () => {
         <TitleSerachResults>Search Results:</TitleSerachResults>
         <BookList>
           {displayedResults.map((result) => (
-            <BookItem key={result.id}>
+            <Link to="/book-detail-page" key={result.id}>
+            <BookItem onClick={() => handleClickBookForDetail(result)}>
               {result.volumeInfo.imageLinks ? (
               <img
                 src={result.volumeInfo.imageLinks.thumbnail}
@@ -284,6 +295,7 @@ const ContentSearch = () => {
                 )}
               </BookInfo>
             </BookItem>
+            </Link>
           ))}
         </BookList>
 
