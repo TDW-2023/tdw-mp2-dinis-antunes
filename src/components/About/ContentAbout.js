@@ -121,13 +121,6 @@ const ContentAbout = () => {
           <br />
           Organize, discover, and immerse yourself in new literary adventures.
           <br></br>
-          Dive into a vast collection of books, ranging from timeless classics
-          to the latest releases.
-          <br />
-          Now you can search, select, and add new books to your personal
-          reading list.
-          <br />
-          Organize, discover, and immerse yourself in new literary adventures.
         </ParagrHomepage>
       </TextContainer>
       <ImageHeroHomepage>

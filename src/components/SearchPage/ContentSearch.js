@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 // import { Link } from 'react-router-dom'
 import styled from "styled-components";
 import DefaultImg from "../../assets/no_img_available.svg"
 // import ImgNoResult from "../../assets/no search.svg"
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { selectBook } from '../../redux/slices/bookSliceRedux';
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,11 @@ const SearchContainer = styled.div`
   height: calc(100vh - 70px);
   background-color: #ececec;
   color: #2e2e2e;
+
+  a {
+    color: #2e2e2e;
+  }
+
 `;
 
 const SearchBarContainer = styled.div`
@@ -157,34 +162,13 @@ const DefaultBookImage = styled.img`
 const TitleSerachResults = styled.h2`
 margin-top: 2em;
 margin-bottom: 2em;
+text-align: center;
 
 @media (max-width: 400px) {
   font-size: 1.3em;
 }
 
 `;
-
-// const NoResultsForSearchContainer = styled.div`
-// display: flex;
-// flex-direction: column;
-// align-items: center;
-// justify-content: center;
-// height: 100vh;
-// `;
-
-// const ImageForNoResults = styled.img`
-//   max-width: 200px;
-//   height: auto;
-// `;
-
-// const MessageForNoResults = styled.h3`
-// margin-top: 2em;
-// margin-bottom: 2em;
-
-// @media (max-width: 400px) {
-//   font-size: 1.3em;
-// }
-// `;
 
 const ContentSearch = () => {
 
@@ -205,12 +189,17 @@ const ContentSearch = () => {
 
   // console.log(process.env)
 
-  // const apiKey = process.env.GOOGLE_BOOKS_API_KEY;
+  const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
 
   // console.log(apiKey);
 
+  useEffect(() => {
+    // dar reset  nos btn quando a lista de resultados muda (nova pesquisa)
+    setPage(1);
+  }, [searchResults]);
+
   const handleSearchBook = () => {
-    const apiKey = "AIzaSyDrTdQgZaVV2uA82GghoG_ib2KSabYp5M4";
+
 
     if (!apiKey) {
       console.error("Wrong API key...");

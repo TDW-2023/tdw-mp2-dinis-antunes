@@ -124,6 +124,8 @@ a {
     transform: translateX(-100%);
     transition: all 0.45s;
     z-index: 5;
+    text-align: center;
+    justify-content: center;
   }
 
   .Navbar > .nav-items > a {
