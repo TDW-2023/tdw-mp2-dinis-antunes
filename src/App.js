@@ -4,6 +4,7 @@ import SearchPage from "./pages/SearchPage";
 import About from "./pages/About";
 import DetailPage from "./pages/Detailpage";
 import ToReadPage from "./pages/ToRead";
+import HaveRead from "./pages/HaveRead";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/about" element={<About/>}></Route>
         <Route path="/book-detail-page" element={<DetailPage/>}></Route>
         <Route path="/to-read-page" element={<ToReadPage/>}></Route>
+        <Route path="/have-read-page" element={<HaveRead/>}></Route>
       </Routes>
 </BrowserRouter>
     </div>

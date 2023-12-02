@@ -3,7 +3,9 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { selectSelectedBook } from '../../redux/slices/bookSliceRedux';
 import { selectToReadBooks } from '../../redux/slices/bookSliceRedux';
+import { selectToHaveReadBooks } from '../../redux/slices/bookSliceRedux';
 import { addToRead } from '../../redux/slices/bookSliceRedux';
+import { addToHaveRead } from '../../redux/slices/bookSliceRedux';
 import styled from 'styled-components';
 import ArrowBack from '../../assets/back.png';
 import { useNavigate } from 'react-router-dom';
@@ -217,7 +219,7 @@ vertical-align: middle;
   border: 1px solid #ccc;
   color: #666;
   cursor: not-allowed;
-
+}
 `;
 
 const AddBookToListButton2 = styled.button`
@@ -256,6 +258,14 @@ vertical-align: middle;
 &:active {
   opacity: 0.5;
 }
+
+&:disabled {
+  background: #ccc;
+  border: 1px solid #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
 `;
 
 const ContentDetailBook = () => {
@@ -264,6 +274,7 @@ const ContentDetailBook = () => {
   const selectedBook = useSelector(selectSelectedBook);
   const navigate = useNavigate();
   const toReadBooks = useSelector(selectToReadBooks);
+  const haveReadBooks = useSelector(selectToHaveReadBooks);
 
   if (!selectedBook) { // caso nenhum livro tiver sido selecionado
     return <Spacetop>
@@ -281,8 +292,16 @@ const ContentDetailBook = () => {
     }
   };
 
+  const handleAddToHaveReadButton = () => { //adicionar livros para o Have Read Page
+    if (selectedBook) {
+      console.log('A adicionar para o Have read:', selectedBook)
+      dispatch(addToHaveRead(selectedBook));
+    }
+  };
  
   const isBookInToReadList = toReadBooks.some(book => book.id === selectedBook.id); // verificar a existencia de um livro com o mesmo id na lista --> funcionalidade para dar disabled no btn de add to read list
+
+  const isBookInHaveReadList = haveReadBooks.some(book => book.id === selectedBook.id); // verificar a existencia de um livro com o mesmo id na lista --> funcionalidade para dar disabled no btn de add to have read list
 
   const verifyIfBookHaveDescription = selectedBook.volumeInfo.description || "Sorry, this book doesn't have a description available :(" //caso livro nao tiver descricao
 
@@ -305,7 +324,7 @@ const ContentDetailBook = () => {
         )}
           <BookButtonsContainer>
             <Link to="/to-read-page"><AddBookToListButton1 onClick={handleAddToReadButton} disabled={isBookInToReadList}>To Read</AddBookToListButton1></Link>
-            <AddBookToListButton2>Have Read</AddBookToListButton2>
+            <Link to="/have-read-page"><AddBookToListButton2 onClick={handleAddToHaveReadButton} disabled={isBookInHaveReadList}>Have Read</AddBookToListButton2></Link> 
           </BookButtonsContainer>
 
       </BookDetails>
