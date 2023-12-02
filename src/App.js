@@ -3,6 +3,7 @@ import Homepage from "./pages/Homepage";
 import SearchPage from "./pages/SearchPage";
 import About from "./pages/About";
 import DetailPage from "./pages/Detailpage";
+import ToReadPage from "./pages/ToRead";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path="/" element={<Homepage/>}></Route>
         <Route path="/search-page" element={<SearchPage/>}></Route>
         <Route path="/about" element={<About/>}></Route>
-        <Route path="/book-detail-page" element={<DetailPage/>}></Route> 
+        <Route path="/book-detail-page" element={<DetailPage/>}></Route>
+        <Route path="/to-read-page" element={<ToReadPage/>}></Route>
       </Routes>
 </BrowserRouter>
     </div>
