@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { selectSelectedBook } from '../../redux/slices/bookSliceRedux';
+import { selectToReadBooks } from '../../redux/slices/bookSliceRedux';
 import { addToRead } from '../../redux/slices/bookSliceRedux';
 import styled from 'styled-components';
 import ArrowBack from '../../assets/back.png';
@@ -210,6 +211,13 @@ vertical-align: middle;
 &:active {
   opacity: 0.5;
 }
+
+&:disabled {
+  background: #ccc;
+  border: 1px solid #ccc;
+  color: #666;
+  cursor: not-allowed;
+
 `;
 
 const AddBookToListButton2 = styled.button`
@@ -255,6 +263,7 @@ const ContentDetailBook = () => {
   const dispatch = useDispatch();
   const selectedBook = useSelector(selectSelectedBook);
   const navigate = useNavigate();
+  const toReadBooks = useSelector(selectToReadBooks);
 
   if (!selectedBook) { // caso nenhum livro tiver sido selecionado
     return <Spacetop>
@@ -271,6 +280,9 @@ const ContentDetailBook = () => {
       dispatch(addToRead(selectedBook));
     }
   };
+
+ 
+  const isBookInToReadList = toReadBooks.some(book => book.id === selectedBook.id); // verificar a existencia de um livro com o mesmo id na lista --> funcionalidade para dar disabled no btn de add to read list
 
   const verifyIfBookHaveDescription = selectedBook.volumeInfo.description || "Sorry, this book doesn't have a description available :(" //caso livro nao tiver descricao
 
@@ -292,7 +304,7 @@ const ContentDetailBook = () => {
           </CategoriesContainer>
         )}
           <BookButtonsContainer>
-            <Link to="/to-read-page"><AddBookToListButton1 onClick={handleAddToReadButton}>To Read</AddBookToListButton1></Link>
+            <Link to="/to-read-page"><AddBookToListButton1 onClick={handleAddToReadButton} disabled={isBookInToReadList}>To Read</AddBookToListButton1></Link>
             <AddBookToListButton2>Have Read</AddBookToListButton2>
           </BookButtonsContainer>
 
