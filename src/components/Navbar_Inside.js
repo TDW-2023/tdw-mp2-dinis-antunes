@@ -11,7 +11,7 @@ const NavbarInside = ()=> {
             <strong><Link to={"/"}>ReadQuest</Link></strong>
             </span>
             <div className={`nav-items ${isOpen && "open"}`}>
-                 <Link to={""}>To Read</Link>
+                 <Link to={"/to-read-page"}>To Read</Link>
                  <Link to={""}>Have Read</Link>
                  <Link to={"/about"}>About</Link>
                 <Link to={"/search-page"}>Search</Link>

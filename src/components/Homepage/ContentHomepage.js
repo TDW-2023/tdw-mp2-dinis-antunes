@@ -126,7 +126,7 @@ const ContentHomepage = () => {
       <TextContainer>
         <HeroTitle>Discover.</HeroTitle>
         <ParagrHomepage>
-          Dive into a vast collection of books, ranging from timeless classics
+          Dive into a vast collection of books, ranging from the classics
           to the latest releases.
           <br />
           Now you can search, select, and add new books to your personal
