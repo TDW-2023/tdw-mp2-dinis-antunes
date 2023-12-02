@@ -11,6 +11,7 @@ import ArrowBack from '../../assets/back.png';
 import { useNavigate } from 'react-router-dom';
 import ImgNoResults from "../../assets/no search.svg"
 import { Link } from 'react-router-dom';
+import ImgDeFault from '../../assets/no_img_available.svg'
 
 const Spacetop = styled.div`
   padding-top: 5em;
@@ -285,6 +286,10 @@ const ContentDetailBook = () => {
       </Spacetop>;
   }
 
+  const bookImage = selectedBook.volumeInfo.imageLinks
+    ? selectedBook.volumeInfo.imageLinks.thumbnail
+    : ImgDeFault;
+
   const handleAddToReadButton = () => { //adicionar livros para o To Read Page
     if (selectedBook) {
       console.log('A adicionar para o To read:', selectedBook)
@@ -310,7 +315,7 @@ const ContentDetailBook = () => {
     <ContentDetailBookContainer>
       <BackButton src={ArrowBack} onClick={() => navigate(-1)} />
       
-      <BookImage src={selectedBook.volumeInfo.imageLinks.thumbnail} alt="Book Cover" />
+      <BookImage src={bookImage} alt="Book Cover" />
 
       <BookDetails>
         <TitleBookss>{selectedBook.volumeInfo.title}</TitleBookss>

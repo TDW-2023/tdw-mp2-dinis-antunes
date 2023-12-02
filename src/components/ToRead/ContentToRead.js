@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToReadBooks, removeFromToRead} from '../../redux/slices/bookSliceRedux';
 import styled from 'styled-components';
+import DefaultImg from '../../assets/no_img_available.svg'
 
 const TitleToRead = styled.h1`
 margin-top:1.5em;
@@ -124,11 +125,16 @@ const ContentToRead = () => {
       <BooksWrapper>
         {toReadBooks.map((book) => (
           <BookContainer key={book.id}>
-            {book.volumeInfo.imageLinks && (
+            {book.volumeInfo.imageLinks ? (
               <img
                 src={book.volumeInfo.imageLinks.thumbnail}
                 alt={`Capa do livro ${book.volumeInfo.title}`}
               />
+              ) : (
+                <img
+                  src={DefaultImg}
+                  alt="imagem default da capa de livro"
+                />
             )}
             <BookTitle>{book.volumeInfo.title}</BookTitle>
             <ButtonDeleteBook onClick={() => handleRemoveBookFromToRead(book)}>Remove Book</ButtonDeleteBook>
