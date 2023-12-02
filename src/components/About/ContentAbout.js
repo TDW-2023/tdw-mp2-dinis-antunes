@@ -106,21 +106,13 @@ const ContentAbout = () => {
       <TextContainer>
         <HeroTitle>ReadQuest.</HeroTitle>
         <ParagrHomepage>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a pellentesque elit, at ultricies purus. Phasellus porta mi tortor, eu fringilla turpis malesuada sed. Mauris quis magna non neque cursus interdum. Donec eu nisl tincidunt, rutrum nisl eget, vehicula justo. 
-          <br />
-          Now you can search, select, and add new books to your personal
-          reading list.
-          <br />
-          Organize, discover, and immerse yourself in new literary adventures.
-          <br></br>
-          Dive into a vast collection of books, ranging from timeless classics
-          to the latest releases.
-          <br />
-          Now you can search, select, and add new books to your personal
-          reading list.
-          <br />
-          Organize, discover, and immerse yourself in new literary adventures.
-          <br></br>
+        The ReadQuest project was created within the scope of the Technologies and Web Development unit.
+<br></br><br></br>
+This project allows the user to immerse themselves in the universe of books, for this reason, ReadQuest uses the Google Books API as a data source, which allows us to offer our users the opportunity to explore and learn more about their favorite books.
+<br></br>
+This way, the user can discover new books and obtain some extra details about them. ReadQuest has the great advantage of allowing the user to save their list of readings they have already done and even create a list of their future readings, all without having to log in.
+<br></br><br></br>
+Embark on this emotional journey through the literary universe and create your virtual library with ReadQuest!
         </ParagrHomepage>
       </TextContainer>
       <ImageHeroHomepage>
