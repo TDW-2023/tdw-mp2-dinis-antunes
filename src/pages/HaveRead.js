@@ -1,8 +1,13 @@
 import React from 'react'
+import NavbarInside from '../components/Navbar_Inside'
+import ContentHaveRead from '../components/HaveRead/ContentHaveRead'
 
 const HaveRead = () => {
   return (
-    <div>HaveRead Page</div>
+    <div>
+      <NavbarInside/>
+      <ContentHaveRead/>
+    </div>
   )
 }
 
