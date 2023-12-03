@@ -1,11 +1,10 @@
 import React, { useState, useEffect} from "react";
-// import { Link } from 'react-router-dom'
 import styled from "styled-components";
 import DefaultImg from "../../assets/no_img_available.svg"
-// import ImgNoResult from "../../assets/no search.svg"
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { selectBook } from '../../redux/slices/bookSliceRedux';
 import { Link } from "react-router-dom";
+import { searchBooks, selectSearchResults} from '../../redux/slices/searchSliceRedux';
 
 const SearchContainer = styled.div`
   display: flex;
@@ -171,71 +170,63 @@ text-align: center;
 `;
 
 const ContentSearch = () => {
-
   const dispatch = useDispatch();
+  const searchResults = useSelector(selectSearchResults);
+
 
   const [searchBook, setSearchBook] = useState(""); // guardar o que foi pesquisado
-  const [searchResults, setSearchResults] = useState([]); // guardar os resultados da pesquisa
+  const [Page, setPage] = useState(1); // estado para páginas de resultados
+  const booksPerPage = 6; // limitar o resultado da pesquisa a 6 livros por página
+  
+  useEffect(() => {
+    // da reset nos btn na página sempre que searchBook muda, para nao começar uma nova search já numa segunda pagina
+    setPage(1);
+  }, [searchBook]);
 
-  const [Page, setPage] = useState(1); // estado para paginas de resultados
-
-  const booksPerPage = 6; // limitar o resultado da pesquisa a 6 livros p/ pagina
+  useEffect(() => {
+    // Limpa os resultados da pesquisa quando o sai do componente
+    return () => {
+      dispatch(searchBooks(""));
+    };
+  }, [dispatch]);
 
   // paginacao dos resultados
-
   const startIndex = (Page - 1) * booksPerPage;
   const endIndex = startIndex + booksPerPage;
   const displayedResults = searchResults.slice(startIndex, endIndex);
 
-  // console.log(process.env)
-
   const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
 
-  // console.log(apiKey);
-
-  useEffect(() => {
-    // dar reset  nos btn quando a lista de resultados muda (nova pesquisa)
-    setPage(1);
-  }, [searchResults]);
-
   const handleSearchBook = () => {
-
-
-    if (!apiKey) {
-      console.error("Wrong API key...");
+    if (!apiKey || !searchBook.trim()) {
+      console.error("query de pesquisa vazia");
+      return;
+    }
+  
+    const query = encodeURIComponent(searchBook.trim()); // Codificar a consulta para lidar com caracteres especiais
+    if (!query) {
+      console.error("Search query is empty.");
       return;
     }
 
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchBook}&key=${apiKey}`;
-
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        setSearchResults(data.items || []);
-        console.log("data API:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
+    dispatch(searchBooks(searchBook.trim()));
     console.log(`Searching for: ${searchBook}`);
   };
 
   const handleInputChange = (event) => {
-    //atualizar o valor que está na search bar
+    //atualiza o valor que está na search bar
     setSearchBook(event.target.value);
   };
 
   const handleKeyPress = (event) => {
     //para realizar a pesquisa se se clicar no Enter, e não só no clique no btn search
-
     if (event.key === "Enter") {
       handleSearchBook();
     }
   };
 
   const handlePageChange = (newPage) => {
-    // mudar de paginas
+    // mudar de páginas
     setPage(newPage);
   };
 
@@ -245,68 +236,69 @@ const ContentSearch = () => {
 
   return (
     <SearchContainer>
-    <SearchBarContainer>
-      <SearchBar
-        type="text"
-        placeholder="Search your next book..."
-        value={searchBook}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyPress}
-      />
-      <SearchButton onClick={handleSearchBook}>Search</SearchButton>
-    </SearchBarContainer>
+      <SearchBarContainer>
+        <SearchBar
+          type="text"
+          placeholder="Search your next book..."
+          value={searchBook}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+        />
+        <SearchButton onClick={handleSearchBook}>Search</SearchButton>
+      </SearchBarContainer>
 
-{/* resultados da pesquisa*/}
 
-    {searchResults.length > 0 && (
-      <div>
-        <TitleSerachResults>Search Results:</TitleSerachResults>
-        <BookList>
-          {displayedResults.map((result) => (
-            <Link to="/book-detail-page" key={result.id}>
-            <BookItem onClick={() => handleClickBookForDetail(result)}>
-              {result.volumeInfo.imageLinks ? (
-              <img
-                src={result.volumeInfo.imageLinks.thumbnail}
-                alt="Capa do Livro"
-              />):(
-                <DefaultBookImage
-                  src={DefaultImg}  // img default caso a api nao retorne img do livro
-                  alt="imagem default capa de livro"
-                />
-              )}
-              <BookInfo>
-                <BookTitle>{result.volumeInfo.title}</BookTitle>
-                {result.volumeInfo.authors && (
-                  <BookAuthors>
-                    {result.volumeInfo.authors.join(", ")}
-                  </BookAuthors>
-                )}
-              </BookInfo>
-            </BookItem>
-            </Link>
-          ))}
-        </BookList>
 
-        {/* btn's prev e next*/}
+      {/* resultados da pesquisa */}
+      {searchResults.length > 0 && (
+        <div>
+          <TitleSerachResults>Search Results:</TitleSerachResults>
+          <BookList>
+            {displayedResults.map((result) => (
+              <Link to="/book-detail-page" key={result.id}>
+                <BookItem onClick={() => handleClickBookForDetail(result)}>
+                  {result.volumeInfo.imageLinks ? (
+                    <img
+                      src={result.volumeInfo.imageLinks.thumbnail}
+                      alt="Capa do Livro"
+                    />
+                  ) : (
+                    <DefaultBookImage
+                      src={DefaultImg}
+                      alt="imagem default capa de livro"
+                    />
+                  )}
+                  <BookInfo>
+                    <BookTitle>{result.volumeInfo.title}</BookTitle>
+                    {result.volumeInfo.authors && (
+                      <BookAuthors>
+                        {result.volumeInfo.authors.join(", ")}
+                      </BookAuthors>
+                    )}
+                  </BookInfo>
+                </BookItem>
+              </Link>
+            ))}
+          </BookList>
 
-        <PaginationButtonsCointainer>
-          <PaginationButton
-            onClick={() => handlePageChange(Page - 1)}
-            disabled={Page === 1}
-          >
-            Previous Page
-          </PaginationButton>
-          <PaginationButton
-            onClick={() => handlePageChange(Page + 1)}
-            disabled={endIndex >= searchResults.length}
-          >
-            Next Page
-          </PaginationButton>
-        </PaginationButtonsCointainer>
-      </div>
+          {/* btn's prev e next */}
+          <PaginationButtonsCointainer>
+            <PaginationButton
+              onClick={() => handlePageChange(Page - 1)}
+              disabled={Page === 1}
+            >
+              Previous Page
+            </PaginationButton>
+            <PaginationButton
+              onClick={() => handlePageChange(Page + 1)}
+              disabled={endIndex >= searchResults.length}
+            >
+              Next Page
+            </PaginationButton>
+          </PaginationButtonsCointainer>
+        </div>
       )}
-  </SearchContainer>
+    </SearchContainer>
   );
 };
 
